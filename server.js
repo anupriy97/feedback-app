@@ -9,9 +9,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const con = mysql.createConnection({
-	host: '172.27.27.94',
-	user: 'anupriyanupriy',
-	password: 'qwertyuiop',
+	host: '192.168.0.112',
+	user: 'webApp',
+	password: 'webApp',
 	database: "feedback",
 });
 
@@ -43,26 +43,26 @@ app.get('/api/getFeedback', (req, res) => {
 });
 
 app.post('/api/giveFeedback', (req, res) => {
-	console.log(req.body);
+	// console.log(req.body);
 
-	let createTable = "CREATE TABLE IF NOT EXISTS feedbacks(id INT PRIMARY KEY AUTO_INCREMENT, q1 INT NOT NULL, q2 INT NOT NULL, q3 INT NOT NULL, q4 INT NOT NULL, q5 VARCHAR(500));";
+	// let createTable = "CREATE TABLE IF NOT EXISTS feedbacks(id INT PRIMARY KEY AUTO_INCREMENT, q1 INT NOT NULL, q2 INT NOT NULL, q3 INT NOT NULL, q4 INT NOT NULL, q5 VARCHAR(500));";
 
-	con.query(createTable, (err, result) => {
+	// con.query(createTable, (err, result) => {
+	// 	if (err) {
+	// 		console.log(err);
+	// 	} else {
+	let insertFeedback = "INSERT INTO feedbacks (q1, q2, q3, q4, q5) VALUES (" + req.body.q1 + ", " + req.body.q2 + ", " + req.body.q3 + ", " + req.body.q4 + ", '" + req.body.q5 + "');";
+	con.query(insertFeedback, (err, result) => {
 		if (err) {
 			console.log(err);
+			res.send({ message: "Feedback not received !" });
 		} else {
-			let insertFeedback = "INSERT INTO feedbacks (q1, q2, q3, q4, q5) VALUES (" + req.body.q1 + ", " + req.body.q2 + ", " + req.body.q3 + ", " + req.body.q4 + ", '" + req.body.q5 + "');";
-			con.query(insertFeedback, (err, result) => {
-				if (err) {
-					console.log(err);
-					res.send({ message: "Feedback not received !" });
-				} else {
-					console.log("Feedback successfully added !");
-					res.send({ message: "Received successfully !" });
-				}
-			});
+			console.log("Feedback successfully added !");
+			res.send({ message: "Received successfully !" });
 		}
 	});
+	// 	}
+	// });
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
