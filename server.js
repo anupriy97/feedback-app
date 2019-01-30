@@ -10,8 +10,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const con = mysql.createConnection({
 	host: '192.168.0.112',
-	user: 'webApp',
-	password: 'webApp',
+	user: 'anupriy',
+	password: 'anupriy',
 	database: "feedback",
 });
 

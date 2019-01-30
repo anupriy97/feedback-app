@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './FeedbackForm.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class FeedbackForm extends Component {
 	constructor(props) {
@@ -54,80 +57,84 @@ class FeedbackForm extends Component {
 
 		const resp = await response.json();
 		console.log(resp.message);
+
+		this.reset();
 	}
 
 	render() {
 		return (
-			<div className="formContainer">
-				<div className="row">
-					<form>
-						<div>
+			<Container style={{ height: '100vh' }}>
+				<Row style={{ backgroundColor: 'orange' }}>
+					<div className="title"><b>Please give your feedback...</b></div>
+				</Row>
+				<Row>
+					<Col><form>
+						<div className="ques">
 							Are you satisfied overall with our products? 1 means extremely dissatisfied, 5 means extremely satisfied.
 						</div>
-						<input
+						1<input
 							name="q1"
 							type="range"
 							min="1"
 							max="5"
 							value={this.state.q1}
 							onChange={this.handleInputChange} />
-						<br />
-						<div>
+						5<br />
+						<div className="ques">
 							Do you find our products easy to use? 1 means they are not usable at all, 5 means they are extremely easy to use.
 						</div>
-						<input
+						1<input
 							name="q2"
 							type="range"
 							min="1"
 							max="5"
 							value={this.state.q2}
 							onChange={this.handleInputChange} />
-						<br />
-						<div>
+						5<br />
+						<div className="ques">
 							How much impact our products have made on your daily routine? 1 means no impact at all, 5 means a huge impact.
 						</div>
-						<input
+						1<input
 							name="q3"
 							type="range"
 							min="1"
 							max="5"
 							value={this.state.q3}
 							onChange={this.handleInputChange} />
-						<br />
-						<div>
+						5<br />
+						<div className="ques">
 							Would you recommend our products to your friends and family? 1 means strongly advice against our products, 5 means strongly recommend our products.
 						</div>
-						<input
+						1<input
 							name="q4"
 							type="range"
 							min="1"
 							max="5"
 							value={this.state.q4}
 							onChange={this.handleInputChange} />
-						<br />
-						<div>
+						5<br />
+						<div className="ques">
 							Any other feedback...
 						</div>
 						<textarea
 							name="q5"
-							rows="10"
-							cols="50"
+							maxLength="500"
 							value={this.state.q5}
 							onChange={this.handleInputChange} />
-						<div className="buttons">
-							<button type="submit" className="button" onClick={this.giveFeedback}>Submit</button>
-							<button type="submit" className="button" onClick={this.reset}>Reset</button>
+						<div>
+							<button className="success" onClick={this.giveFeedback}>Submit</button>
+							<button className="danger"  onClick={this.reset}>Reset</button>
 						</div>
-					</form>
-				</div>
-				<div className="row">
+					</form></Col>
+				</Row>
+				{/*<Row>
 					<div>{this.state.q1}</div>
 					<div>{this.state.q2}</div>
 					<div>{this.state.q3}</div>
 					<div>{this.state.q4}</div>
 					<pre>{this.state.q5}</pre>
-				</div>
-			</div>
+				</Row>*/}
+			</Container>
 		);
 	}
 }

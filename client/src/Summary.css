@@ -1,0 +1,44 @@
+.title {
+	font-size: 4em;
+}
+
+.ques {
+	font-size: 1.5em;
+}
+
+.success {
+	color: #28a745;
+	border: 1px solid #28a745;
+	background-color: 'antiquewhite';
+	transition: background-color 0.3s;
+	margin: 1em;
+}
+
+.success::hover {
+	background-color: #28a745;
+	color: 'white';
+}
+
+.danger {
+	color: #dc3545;
+	border: 1px solid #dc3545;
+	background-color: 'antiquewhite';
+	transition: background-color 0.3s;
+}
+
+.danger::hover {
+	background-color: #000000;
+	color: 'white';
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 1em;
+	margin: auto;
+}
+
+ol {
+	margin: auto;
+	padding: 1em;
+}
